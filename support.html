@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recall App Support</title>
+    <style>
+        :root {
+            --primary: #f59e0b;
+            --bg: #fafafa;
+            --surface: #ffffff;
+            --text-main: #1f2937;
+            --text-muted: #6b7280;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #111111;
+                --surface: #1f1f1f;
+                --text-main: #f9fafb;
+                --text-muted: #9ca3af;
+            }
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            margin: 0;
+            padding: 40px 20px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            background: var(--surface);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 18px;
+            margin-bottom: 40px;
+        }
+        h2 {
+            font-size: 20px;
+            margin-top: 30px;
+            margin-bottom: 12px;
+            color: var(--primary);
+        }
+        p {
+            margin-bottom: 16px;
+            color: var(--text-main);
+        }
+        .faq-box {
+            border-left: 3px solid var(--primary);
+            padding-left: 20px;
+            margin-bottom: 30px;
+        }
+        .contact-btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            margin-top: 20px;
+        }
+        .footer {
+            margin-top: 50px;
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Recall App Support</h1>
+        <div class="subtitle">Personal Intelligence, Reimagined.</div>
+        <p>Thank you for using Recall! We designed this app to be your private, offline-first personal memory assistant.</p>
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 30px 0;">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-box">
+            <p><strong>🔒 Is my data private?</strong></p>
+            <p>Yes. Recall is strictly offline-first. Your photos, voice notes, and memories are stored locally on your device. We do not transmit your data to any external server. If you enable iCloud backups, your data is encrypted by Apple.</p>
+        </div>
+        <div class="faq-box">
+            <p><strong>🔄 How do I restore my purchase?</strong></p>
+            <p>If you upgraded to <strong>Recall Pro</strong> and reinstalled the app, you don't need to pay again. Simply go to the upgrade screen and tap the <u>"Restore Previous Purchase"</u> link at the bottom. The app will verify your receipt and unlock Pro instantly.</p>
+        </div>
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 30px 0;">
+        <h2>Contact Us</h2>
+        <p>Found a bug? Have a feature request? We'd love to hear from you.</p>
+        
+        <a href="mailto:senthil930@gmail.com" class="contact-btn">📧 Email Support</a>
+    </div>
+    <div class="footer">
+        &copy; 2026 Senthil Recall. All rights reserved.
+    </div>
+</body>
+</html>
