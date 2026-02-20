@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recall | Personal Intelligence & Private Vault</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #030712;
+            --surface: #111827;
+            --surface-glass: rgba(17, 24, 39, 0.7);
+            --primary: #3b82f6;
+            --primary-glow: rgba(59, 130, 246, 0.5);
+            --secondary: #10b981;
+            --text: #f9fafb;
+            --text-muted: #9ca3af;
+            --border: rgba(255, 255, 255, 0.1);
+            --font-main: 'Outfit', sans-serif;
+            --shadow-premium: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Ambient Background Glows */
+        .glow-1 {
+            position: absolute;
+            top: -10%;
+            right: -10%;
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .glow-2 {
+            position: absolute;
+            top: 40%;
+            left: -10%;
+            width: 40vw;
+            height: 40vw;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 70%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Navbar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 10%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            background: rgba(3, 7, 18, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 500;
+            transition: 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+        }
+
+        .cta-btn {
+            background-color: var(--primary);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            box-shadow: 0 10px 20px var(--primary-glow);
+            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px var(--primary-glow);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 120px 10% 80px;
+            gap: 40px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 5.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin: 0;
+            background: linear-gradient(to bottom, #fff 30%, #9ca3af);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0;
+        }
+
+        /* CSS Mockup Styling */
+        .hero-mockup {
+            margin: 20px 0;
+            perspective: 1000px;
+        }
+
+        .iphone {
+            width: 220px;
+            height: 450px;
+            background: #1f2937;
+            border-radius: 40px;
+            border: 10px solid #374151;
+            position: relative;
+            transform: rotateY(-15deg) rotateX(10deg);
+            box-shadow: 30px 30px 80px rgba(0, 0, 0, 0.6), inset 0 0 15px rgba(255, 255, 255, 0.1);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: rotateY(-15deg) rotateX(10deg) translateY(0);
+            }
+
+            50% {
+                transform: rotateY(-10deg) rotateX(5deg) translateY(-20px);
+            }
+        }
+
+        .screen {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            right: 5px;
+            bottom: 5px;
+            background: #030712;
+            border-radius: 32px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        .dynamic-island {
+            width: 70px;
+            height: 22px;
+            background: black;
+            border-radius: 20px;
+            margin: 0 auto 15px;
+        }
+
+        .app-header {
+            font-weight: 800;
+            color: #3b82f6;
+            margin-bottom: 20px;
+            font-size: 1rem;
+            text-align: left;
+        }
+
+        .app-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 16px;
+            margin-bottom: 10px;
+            font-size: 0.7rem;
+            color: #9ca3af;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .app-card::before {
+            content: '•';
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        .app-sync {
+            margin-top: auto;
+            font-size: 0.6rem;
+            color: #10b981;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        /* Support Section Styling */
+        .support-container {
+            padding: 100px 10%;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 50px;
+            margin: 80px 5%;
+            border: 1px solid var(--border);
+        }
+
+        .support-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .contact-form {
+            display: grid;
+            gap: 20px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            background: #111827;
+            border: 1px solid var(--border);
+            padding: 18px;
+            border-radius: 15px;
+            color: white;
+            font-family: inherit;
+            font-size: 0.95rem;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 1px var(--primary);
+        }
+
+        /* Categories Section */
+        .categories {
+            padding: 100px 10%;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .cat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .cat-card {
+            background: var(--surface-glass);
+            border: 1px solid var(--border);
+            padding: 40px;
+            border-radius: 30px;
+            backdrop-filter: blur(20px);
+            transition: 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cat-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .cat-card i {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .cat-card.who i {
+            color: #3b82f6;
+        }
+
+        .cat-card.where i {
+            color: #10b981;
+        }
+
+        .cat-card.when i {
+            color: #a855f7;
+        }
+
+        .cat-card.what i {
+            color: #f59e0b;
+        }
+
+        .cat-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .cat-card p {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        /* Privacy Section */
+        .privacy {
+            background: var(--surface);
+            padding: 100px 10%;
+            border-radius: 50px;
+            margin: 50px 5%;
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .privacy-content {
+            flex: 1;
+        }
+
+        .privacy-image {
+            flex: 1;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            height: 400px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: var(--shadow-premium);
+        }
+
+        .privacy-badge {
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            background: white;
+            color: black;
+            padding: 15px 25px;
+            border-radius: 15px;
+            font-weight: 800;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            padding: 100px 10% 50px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .footer-bottom {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 20px 5%;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .privacy {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: 3.2rem;
+            }
+
+            .hero {
+                padding-top: 140px;
+                gap: 30px;
+            }
+
+            .iphone {
+                width: 190px;
+                height: 390px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .iphone {
+                width: 170px;
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="glow-1"></div>
+    <div class="glow-2"></div>
+
+    <nav>
+        <div class="logo">RE<span>CALL.</span></div>
+        <div class="nav-links">
+            <a href="#features">Features</a>
+            <a href="PRIVACY.html">Privacy</a>
+            <a href="SUPPORT.html">Support</a>
+        </div>
+        <a href="https://apps.apple.com/us/app/recall-personal-memory/id6758715992" class="cta-btn">Download App</a>
+    </nav>
+
+    <section class="hero">
+        <h1>Your Second Brain,<br>On-Device.</h1>
+        <p>The privacy-first personal intelligence layer for your life. Remember every person, place, and
+            document—encrypted and local.</p>
+
+        <!-- CSS 3D Mockup -->
+        <div class="hero-mockup">
+            <div class="iphone">
+                <div class="screen">
+                    <div class="dynamic-island"></div>
+                    <div class="app-ui" style="display: flex; flex-direction: column; flex: 1;">
+                        <div class="app-header">Recall</div>
+                        <div class="app-card">Who</div>
+                        <div class="app-card">Where</div>
+                        <div class="app-card">When</div>
+                        <div class="app-card">What</div>
+                        <div class="app-card">Which</div>
+                        <div class="app-sync">Vault Secured • FaceID</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-btns">
+            <a href="https://apps.apple.com/us/app/recall-personal-memory/id6758715992" class="cta-btn">Get Started for
+                Free</a>
+        </div>
+    </section>
+
+    <section class="categories" id="features">
+        <div class="section-header">
+            <h2>The Architecture of Personal Intelligence</h2>
+            <p>A sophisticated framework for professional and personal memory management.</p>
+        </div>
+        <div class="cat-grid">
+            <div class="cat-card who">
+                <h3>Who</h3>
+                <p>Track your network, borrowed items, and collaboration history. Never forget a contact or a handshake.
+                </p>
+            </div>
+            <div class="cat-card where">
+                <h3>Where</h3>
+                <p>Map your journey. Pinpoint coordinates, travel logs, and the venues that matter to your personal
+                    story.</p>
+            </div>
+            <div class="cat-card when">
+                <h3>When</h3>
+                <p>Time-based benchmarks and Flashbacks. Resurfaces intelligence from your social, spatial, and document
+                    records.</p>
+            </div>
+            <div class="cat-card what">
+                <h3>What</h3>
+                <p>The secure vault for your objects, documents, and agreements. AES-256 encrypted on your chip.</p>
+            </div>
+            <div class="cat-card which" style="border-color: var(--primary);">
+                <h3>Which</h3>
+                <p>The Secure Vault. Hardware-backed encryption for your most sensitive identities, keys, and codes.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="privacy" id="privacy">
+        <div class="privacy-content">
+            <h2>Privacy by Architecture.</h2>
+            <p style="margin: 20px 0; color: var(--text-muted);">Recall is an **offline-first** personal intelligence
+                application. We believe your memories belong to you alone, which is why your data never leaves your
+                device's Secure Enclave.</p>
+            <ul style="list-style: none; display: grid; gap: 15px;">
+                <li style="display: flex; gap: 10px; align-items: center;">✅ <strong>Offline-First</strong>: Data
+                    remains on your device</li>
+                <li style="display: flex; gap: 10px; align-items: center;">✅ <strong>No Tracking</strong>: We never
+                    monitor your behavior</li>
+                <li style="display: flex; gap: 10px; align-items: center;">✅ <strong>Secure Vault</strong>: Local-only
+                    AES-256 encryption</li>
+                <li style="display: flex; gap: 10px; align-items: center;">✅ <strong>Bio-Unlock</strong>: FaceID data
+                    stays in Secure Enclave</li>
+            </ul>
+        </div>
+        <div class="privacy-image">
+            <div style="font-size: 5rem;">🛡️</div>
+            <div class="privacy-badge">100% PRIVATE</div>
+        </div>
+    </section>
+
+    <!-- Support Section -->
+    <section class="support-container" id="support">
+        <div class="support-grid">
+            <div>
+                <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Developer Support</h2>
+                <p style="margin-bottom: 30px; color: var(--text-muted); font-size: 1.1rem;">Have questions about Recall
+                    or need technical assistance? Our team is here to help you secure your digital life.</p>
+                <div
+                    style="background: var(--bg); padding: 30px; border-radius: 25px; border: 1px solid var(--border); display: flex; align-items: center; gap: 20px;">
+                    <div style="font-size: 1.5rem;">✉️</div>
+                    <div>
+                        <div
+                            style="font-weight: 600; color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase;">
+                            Direct Email</div>
+                        <div style="color: var(--primary); font-weight: 700; font-size: 1.1rem;">
+                            senthil930@gmail.com</div>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form">
+                <input type="text" placeholder="Full Name">
+                <input type="email" placeholder="Work Email">
+                <textarea placeholder="How can we help?" rows="4"></textarea>
+                <button class="cta-btn" style="border: none; cursor: pointer; width: 100%;">Send Request</button>
+            </div>
+        </div>
+    </section>
+
+    <footer id="legal">
+        <div class="logo">RE<span>CALL.</span></div>
+        <p style="color: var(--text-muted); max-width: 400px; text-align: center; margin-top: 20px;">Personal
+            Intelligence for the
+            privacy-conscious builder. Built exclusively for iOS.</p>
+
+        <div class="footer-links" style="display: flex; gap: 40px; margin-top: 40px;">
+            <a href="PRIVACY.html" style="color: var(--text); text-decoration: none; font-weight: 600;">Privacy
+                Policy</a>
+            <a href="SUPPORT.html" style="color: var(--text); text-decoration: none; font-weight: 600;">Support</a>
+            <a href="https://apps.apple.com/us/app/recall-personal-memory/id6758715992"
+                style="color: var(--text); text-decoration: none; font-weight: 600;">App Store</a>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Recall Intelligence. Built by Senthil.</p>
+            <div style="display: flex; gap: 20px;">
+                <span><a href="https://apps.apple.com/us/app/recall-personal-memory/id6758715992"
+                        style="color: inherit; text-decoration: none;">App Store</a></span>
+                <span>𝕏</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll reveal for cards
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.cat-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = '0.6s cubic-bezier(0.23, 1, 0.32, 1)';
+            observer.observe(card);
+        });
+    </script>
+</body>
+
+</html>
