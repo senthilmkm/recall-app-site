@@ -313,20 +313,59 @@
         </div>
 
         <div class="faq-item">
-            <div class="faq-question">🎙️ Does Recall transmit my audio or photos to the Cloud for processing?</div>
+            <div class="faq-question">🎙️ Does Recall transmit my audio, photos, or location to the Cloud for
+                processing?</div>
             <div class="faq-answer">
-                No. All your recordings, photo attachments, and documents are stored and encrypted exclusively
-                on-device.
-                We do not use any Cloud-based processing for your personal data, ensuring complete privacy.
+                No. All your recordings, photo attachments, documents, and location data are stored and encrypted
+                exclusively on-device. We do not use any Cloud-based processing for your personal data, ensuring
+                complete privacy.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">📍 Why does Recall ask for my location? Where does it go?</div>
+            <div class="faq-answer">
+                Starting in v1.0.7, Recall can attach the place of capture to every memory you save — turning a note
+                like <em>"car parked"</em> into a tappable map pin. The coordinates (latitude, longitude, accuracy,
+                timestamp) are stored <strong>exclusively on your device</strong> alongside the memory and are never
+                transmitted off-device. Location powers three features: the <strong>"Captured here"</strong> chip on
+                memory details (opens Apple Maps), the <strong>"Near me"</strong> filter on the All view (Pro), and
+                <strong>Return Reminders</strong> — Pro users can opt-in to "Always" permission so iOS pings you with a
+                local notification when you walk back into a saved place (parking spots, gate codes, locker numbers).
+                You can deny or revoke this permission at any time in <strong>iOS Settings &gt; Privacy &gt; Location
+                    Services &gt; Recall</strong>; the app continues to work normally without it.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">🎤 How do I set up "Hey Siri, Add to Recall"?</div>
+            <div class="faq-answer">
+                Pro users see a <strong>"Hey Siri, Add to Recall"</strong> tip card on the Home screen — tap it for the
+                in-app 8-step walkthrough. The quick version: open <strong>Shortcuts</strong> &gt; <strong>+</strong>
+                &gt; add <strong>"Ask for Input"</strong> (Text), then add <strong>"Open URL"</strong> with
+                <code>recall-native://add?title=[Provided Input]</code>, rename the shortcut to <em>"Add to
+                    Recall"</em>, and you're done. From then on, say <em>"Hey Siri, Add to Recall"</em> from anywhere
+                — Lock Screen, AirPods, Apple Watch, CarPlay, or HomePod. Siri dictates your text, the Add form opens
+                pre-filled, and you tap Confirm. (Auto-save is intentionally not supported because Siri can mis-hear.)
             </div>
         </div>
 
         <div class="faq-item">
             <div class="faq-question">💎 What are the benefits of Recall Pro?</div>
             <div class="faq-answer">
-                Recall Pro unlocks the full architecture of personal intelligence, including unlimited memory creation,
-                high-fidelity Document/PDF attachments, advanced "Flashback" insights, and automated Daily Vault
-                Syncing.
+                Recall Pro is a one-time <strong>$1.99</strong> purchase that unlocks the full architecture of personal
+                intelligence:
+                <ul style="margin: 12px 0 0 0; padding-left: 20px; display: grid; gap: 8px;">
+                    <li><strong>Unlimited memories</strong> (free tier is capped at 15)</li>
+                    <li><strong>Vision</strong> — attach photos via Take Photo (camera) or Choose from Library</li>
+                    <li><strong>Audio Note</strong> — attach voice recordings up to 3 minutes per memory</li>
+                    <li><strong>Document Vault</strong> — pin PDFs, Word, Excel, CSV, and images up to 5 MB</li>
+                    <li><strong>Location-aware memories</strong> — the "Near me" filter and Return Reminders
+                        (geofencing)</li>
+                    <li><strong>Hey Siri capture</strong> — the in-app setup helper for hands-free memory creation</li>
+                    <li><strong>Encrypted Export / Import</strong> — AES-256 password-protected backups</li>
+                    <li><strong>"Flashback" insights</strong> — On-This-Day resurfaces of past memories</li>
+                </ul>
             </div>
         </div>
 
