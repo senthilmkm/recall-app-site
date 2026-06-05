@@ -1,6 +1,6 @@
 {
   "id": "v1.1-launch",
-  "message": "",
+  "message": "Hello from the cloud! v1.1 broadcast works.",
   "level": "info",
   "until": "2099-12-31T00:00:00Z",
   "actionLabel": null,
